@@ -2,9 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 /* game board table */
-
+#game{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #board td {
   width: 48px;
   height: 48px;
