@@ -209,7 +209,7 @@ const handleClick = (evt) => {
 	 * PAM : DONE
 	 */
 	if(checkForTie()) {
-		return endGame('ITS A TIE! GG WP EZ NO RE')
+		return endGame('ITS A TIE/DRAW!!')
 	}
 
 	// switch players

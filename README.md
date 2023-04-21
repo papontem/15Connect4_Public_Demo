@@ -1,11 +1,14 @@
-# Memory_Game_Public_Demo
-This is a public repo of our COnnect 4 Project Demo that i helped to complete with the addition of a little bit of html, some css, and some core logic in javascript.
+# Connect 4 Project
+
+This is a public repo of my Connect 4 Project Demo that i helped to complete with the addition of a little bit of html, some css, and some core logic in javascript.
 The Live webpage for this game is using [GitHub Pages](https://pages.github.com/)
 
 
 ## How To Play
 
-When you run the html file or open the hosted page, you will see the connect 4 board. Currently the board is a 6x7 grid. At the top of the board, with what look like boxes with dashed outline, is the area where you can click to drop a piece down that column.
+When you run the html file or open the hosted page, you will see the connect 4 board. Currently the board is a 6x7 grid of 50x50 pixel squares. At the top of the board, with what look like boxes with dashed outlines, is the area where you can click to drop a piece down the desired column selected column.
+
+2 players alternate placing pieces down on the board. The first player to get 4 in pieces in a row horrizontaly, vertically or diagonally wins the game. If the board fills up and no player was able to get 4 in a row, the game ends in a tie/draw.
 
 ![This should be a picture of a Connect 4 game in progress](imgs/Connect4.png)
 
@@ -25,6 +28,6 @@ This is a list of things i'd like to implement as i get better at software devel
     - Choice to add an img to player pieces
     - Change game background to any preffered img
 
-3. Add functionality for resetting the game once an end game or tie game state s reached. 
+3. Add functionality for resetting the game once an end game or tie game state is reached. 
 
         
