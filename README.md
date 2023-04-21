@@ -10,7 +10,7 @@ When you run the html file or open the hosted page, you will see the connect 4 b
 
 2 players alternate placing pieces down on the board. The first player to get 4 in pieces in a row horrizontaly, vertically or diagonally wins the game. If the board fills up and no player was able to get 4 in a row, the game ends in a tie/draw.
 
-![This should be a picture of a Connect 4 game in progress](imgs/Connect4.png)
+![This should be a picture of a Connect 4 game winthin a page](imgs/Connect4V2.png)
 
 
 
