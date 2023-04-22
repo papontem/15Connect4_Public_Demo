@@ -13,12 +13,13 @@ const WIDTH = 7;
 const HEIGHT = 6;
 /**
  * PAM my TODO: add a way to have more than two players.
- * we'll be swtitching between players 1 and 2, so most likely well be reassingning a value to currPlayer. therefore we'll let.
+ * we'll be swtitching between players 1 and 2, so most likely well be reassingning a value to currPlayer. therefore we'll use let.
  * 
  */
 let currPlayer = 1; // active player: 1 or 2
 /**
  * PAM: function for switching current player
+ * can this be refactored?
  */
 const switchCurrPlayer = () => {
 	if(currPlayer == 1){
@@ -27,14 +28,14 @@ const switchCurrPlayer = () => {
 		currPlayer = 1
 	  };
 };
-// const board = []; // array of rows, each row is array of cells  (board[y][x])
-let board = []; // using let for some quick debuggin, will change to const later
+
+const board = []; // array of rows, each row is array of cells  (board[y][x])
 /**
  * PAM: getBoard() return all of the elements in board for me to see
  */
 const getBoard = () => {
-	return board.forEach((val,i)=>{
-		console.log(`row ${i}:`,val);
+	return board.forEach((nestedArr,i)=>{
+		console.log(`row ${i}:`,nestedArr);
 	});
 }
 /** makeBoard: create in-JS board structure:
@@ -45,6 +46,7 @@ const makeBoard = () => {
 	/**
 	 * PAM for loop using out height and width variables.
 	 * DONE
+	 * can this be rafactored?
 	 */
 	// console.log('Making the JS board...');
 	for (let y = 0; y < HEIGHT; y++){
@@ -104,7 +106,7 @@ const makeHtmlBoard = () => {
 		const row = document.createElement("tr");
 		// PAM: using a for loop till it reaches the value of WIDTH
 		for (let x = 0; x < WIDTH; x++) {
-			// PAM: creating the table data call element called cell
+			// PAM: creating the table data cell element called cell
 			const cell = document.createElement("td");
 			// PAM: setting the attribute id of the cell to be coordinates based on its distance in HEIGHT to WIDTH from the top left of the matrix. 
 			cell.setAttribute("id", `${y}-${x}`);
@@ -123,7 +125,8 @@ const findSpotForCol = (x) => {
 	 * PAM: DONE! 
 	 * this function is called during our click event handler fucntion
 	 * x is actually just an INT
-	 * similarly our y will also be an INT
+	 * similarly our return value: y will also be an INT
+	 * if no open spot is found we return a null
 	 */
 	// console.log('Our x:', x);
 	
@@ -135,15 +138,15 @@ const findSpotForCol = (x) => {
 		// console.log('The Value at these coords:',board[y][x]);
 		if (board[y][x] == null){
 			// console.log(`board[${y}][${x}] is Empty`);
-			// return top empty y
+			// PAM: return top empty y
 			// console.log('Returning y:', y);
 			return y
 		} else {
-			// console.log(`board[${y}][${x}] is not Empty`);
+			// console.log(`board[${y}][${x}] is not Empty`); // PAM: i have this continue here so i can uncomment this log when im doing some quick debuggin.
 			continue
 		};
 	};
-	// this means its all full
+	// PAM: this means its all full
 	return null
 };
 
@@ -176,7 +179,7 @@ const placeInTable = (y, x) => {
 const endGame = (msg) => {
   // TODO: pop up alert message
   /**
-   * PAM: doing ... 
+   * PAM: doing ... done
    */
   alert(msg) // this really it??? 
 }
@@ -184,10 +187,10 @@ const endGame = (msg) => {
 /** handleClick: handle click of column top to play piece */
 
 const handleClick = (evt) => {
-	// get x from ID of clicked cell
+	// get x from ID of clicked cell, PAM: ids of the top clickable row's cells
 	let x = +evt.target.id;
 
-	// get next spot in column (if none, ignore click)
+	// get next spot in column (if none, ignore click) PAM: we ignore click by just returning -> ending function 
 	let y = findSpotForCol(x);
 	if (y === null) {
 		return;
@@ -217,7 +220,7 @@ const handleClick = (evt) => {
 	/**
 	 * PAM : DONE
 	 */
-	switchCurrPlayer() // switches current players
+	switchCurrPlayer() // PAM: switches current players
 };
 
 /**
@@ -226,10 +229,11 @@ const handleClick = (evt) => {
  */
 const checkForTie = () => {
 	// PAM: hinted to use Array.every()
-	//  tests whether all elements in the array pass the test implemented by the provided function. Returns true or false.
+	//  tests whether all elements in the array pass the test implemented by the provided arrow function. Returns true or false.
 	return board.every(row=>{
 		// console.log('row:',row);
 		//PAM : return true or false on wheather a null exists
+		// if all values are ints  returns true, if theres a single null, it returns false
 		return row.every(column=>{ 
 			// console.log('column:', column);
 			//PAM: and finally our every condition test statement. 
@@ -277,10 +281,10 @@ const checkForWin = () => {
 			// PAM: vert [0, 0], [0 + 1, x], [0 + 2, x], [0 + 3, x]
 			// PAM:      [0, 0], [1, 0], [2, 0], [3, 0] // makes these four vertical coordinates for the possible four cell pieces that we will check if they are the same players
 
-			let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]]; // PAM: ---- >
-			let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]]; // PAM: | V
-			let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]]; // PAM: / 
-			let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]]; // PAM: \
+			let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]]; // PAM: ---- to the right
+			let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]]; // PAM: | from top to bottom
+			let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]]; // PAM: \ from start to bottom right
+			let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]]; // PAM: / from start to bottom left
 			// PAM: test condition pass the array with the four coordinates to _win() if any is true, then true is returned by checkForWin
 			if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
 				return true;
