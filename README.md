@@ -19,7 +19,7 @@ Click **[>here<](https://papontem.github.io/15Connect4_Public_Demo/)** to start 
 ## ToDo:
 This is a list of things i'd like to implement as i get better at software development.
 
-1. Animations for the pieces dropping down from the top of the boardto the bottom of the column.
+1. remove the click event listener from our top row when the game ends.
 
 2. Adding a menu before the game starts that  will lets users customize their game experience.
     Among some of the settings id like to implement.
@@ -28,8 +28,9 @@ This is a list of things i'd like to implement as i get better at software devel
     - Choice to add an img to player pieces
     - Change game background to any preffered img
 
-3. Add functionality for resetting the game once an end game or tie game state is reached. 
+3. Add functionality for resetting the game once an end game or tie game state is reached.
 
-4. Create game sessions so as to play from different devices
+4. Create online lobby game sessions so as to play from different devices
 
+5. Animations for the pieces dropping down from the top of the boardto the bottom of the column.
         
